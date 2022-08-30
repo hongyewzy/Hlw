@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生态农业圈</title>
+    <link rel="stylesheet" href="css/index.css">
+
+</head>
+<body>
+<div id="app">
+
+    <el-container>
+        <el-header>自动化培育果实</el-header>
+        <el-container>
+            <div width="400px" id="outter">
+
+                <el-aside  id="as1">
+                    <div>风扇1</div>
+<!--                    <el-switch-->
+<!--                            @change="changefeng1()"-->
+<!--                            v-model="feng1"-->
+<!--                            active-text="开"-->
+<!--                            inactive-text="关">-->
+<!--                    </el-switch>-->
+
+                    <el-radio-group v-model="feng1" @change="changefeng1()">
+                        <el-radio :label="'0'">关闭</el-radio>
+                        <el-radio :label="'1'">一档</el-radio>
+                        <el-radio :label="'2'">二档</el-radio>
+                    </el-radio-group>
+
+                </el-aside>
+
+
+                <el-aside id="as2">
+                    <div>风扇2</div>
+<!--                    <el-switch-->
+<!--                            @change="changefeng2()"-->
+<!--                            v-model="feng2"-->
+<!--                            active-text="开"-->
+<!--                            inactive-text="关">-->
+<!--                    </el-switch>-->
+
+                    <el-radio-group v-model="feng2" @change="changefeng2()">
+                        <el-radio :label="'0'">关闭</el-radio>
+                        <el-radio :label="'1'">一档</el-radio>
+                        <el-radio :label="'2'">二档</el-radio>
+                    </el-radio-group>
+                </el-aside>
+
+                <el-aside id="as3">
+                    <div>灯</div>
+                    <el-switch
+                            @change="changedeng()"
+                            v-model="deng"
+                            active-text="开"
+                            inactive-text="关">
+
+                    </el-switch>
+                </el-aside>
+            </div>
+
+
+            <el-main>
+                <div id="main">
+                    <el-table size="small" current-row-key="id" :data="dataList" stripe highlight-current-row>
+
+                        <el-table-column prop="id" label="属性" align="center"></el-table-column>
+
+                        <el-table-column prop="starttime" label="开始时间" align="center"></el-table-column>
+
+                        <el-table-column prop="light" label="光照强度" align="center"></el-table-column>
+
+                        <el-table-column prop="temperature" label="温度" align="center"></el-table-column>
+
+                        <el-table-column prop="humidity" label="湿度" align="center"></el-table-column>
+
+                        <el-table-column prop="ph" label="PH" align="center"></el-table-column>
+
+                    </el-table>
+                </div>
+            </el-main>
+        </el-container>
+    </el-container>
+
+
+
+
+</div>
+
+
+<script src="js/vue.js/"></script>
+<script src="js/axios-0.18.0.js/"></script>
+<script src="element-ui/lib/index.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<link rel="stylesheet"href="element-ui/lib/theme-chalk/index.css">
+<script type="text/javascript" src="js/indexreally.js"></script>
+
+</body>
+</html>

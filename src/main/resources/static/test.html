@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<title>WebSocket Test</title>
+<script language="javascript"type="text/javascript">
+    var wsUri ="ws://localhost:8080/websocket/hhh";
+    var  websocket = new WebSocket(wsUri);
+    //用来存放创建的多个连接对象
+    var websocketarray=new Array();
+    function testWebSocket() {
+        websocket.onopen = function(evt) {
+            onOpen(evt)
+        };
+        websocket.onmessage = function(evt) {
+            onMessage(evt)
+        };
+        websocket.onerror = function(evt) {
+            onError(evt)
+        };
+        websocket.onclose = function(evt) {
+            onClose(evt)
+        };
+    }
+
+    function onOpen(evt) {
+        writeToScreen("新建连接");
+    }
+
+    function onClose(evt) {
+        console.log('websocket 断开: ' + evt.code + ' ' + evt.reason + ' ' + evt.wasClean)
+        console.log(evt)
+        writeToScreen("关闭连接");
+    }
+
+    function onMessage(evt) {
+        writeToScreen('收到消息'+ evt.data);
+    }
+
+    function onError(evt) {
+        writeToScreen('出现错误 '+ evt.data);
+    }
+
+    function writeToScreen(message) {
+        console.info(message)
+    }
+
+    function submit(){
+        //new 一个websocket就是新建了一个连接
+        websocket = new WebSocket(wsUri);
+        websocketarray.push(websocket);
+        testWebSocket();
+    }
+    function stop(){
+        //设置从离当前连接最近一次连接删除
+        var stopwebsocket=websocketarray.pop();
+        //关闭该连接
+        stopwebsocket.close()
+        //websocketarray.splice(websocketarray.length-1,1);
+    }
+    function postmessage(){
+        var c=document.getElementById("message");
+        websocket.send(c.value)
+    }
+    window.addEventListener("load", testWebSocket, false);
+</script>
+<body>
+<h2>WebSocket Test</h2>
+<button onclick="submit()">启动新的连接</button><br>
+<button onclick="stop()">主动断开连接</button><br>
+<input type="text" id="message" placeholder="写要发送的消息">
+<button onclick="postmessage()">发送消息</button><br>
+</body>
+</html>
