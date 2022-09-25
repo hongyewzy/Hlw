@@ -39,8 +39,8 @@ public class nyDataController {
     }
 
     @GetMapping("/basexx")
-    public R<supplies> basexx(String feng1, String feng2, String deng) {
-        supplies tqj = new supplies(feng1, feng2, deng);
+    public R<supplies> basexx(String feng1, String feng2, String deng1,String deng2) {
+        supplies tqj = new supplies(feng1, feng2, deng1,deng2);
         return R.success(tqj);
     }
 
@@ -59,10 +59,31 @@ public class nyDataController {
         return R.success("成功");
     }
 
-    @GetMapping("/deng")
-    public R<String> changedeng(String deng) {
+    @GetMapping("/deng1")
+    public R<String> changedeng1(String deng1) {
 
         return R.success("成功");
     }
+
+    @GetMapping("/deng2")
+    public R<String> changedeng2(String deng2) {
+
+        return R.success("成功");
+    }
+
+    @GetMapping("/All")
+    public R<List<String>> getAllbase(){
+        List<String> list=service.selectAll();
+        return R.success(list);
+    }
+
+    @GetMapping("/getAll")
+    public R<List<nydata>> getAllnydata(){
+        List<nydata> list=service.GetAll();
+        return R.success(list);
+    }
+
+
+
 
 }

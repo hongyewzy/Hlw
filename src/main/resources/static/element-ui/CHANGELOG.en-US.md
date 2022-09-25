@@ -281,7 +281,7 @@
 - InfiniteScroll
   - Update package name (#16125 by @iamkun)
 - MessageBox
-  - Fix  distinguishCancelAndClose action not same as docs bug (#15438 by @qingdengyue)
+  - Fix  distinguishCancelAndClose action not same as docs bug (#15438 by @qingdeng1yue)
 - PopupManager
   - Fix z-index cannot be rewritten at first using (#15738 by @luckyCao)
 - Docs
@@ -384,8 +384,8 @@
   - Fix show-word-count style in el-form (#15359 by @lvjiaxuan)
   - Fix clear icon is not centered (#15354 by @YiiGuxing)
 - Calendar
-  - Fix not correct day of week when the day is Sunday (#15399 by @qingdengyue)
-  - Fix October disappear bug (#15394 by @qingdengyue)
+  - Fix not correct day of week when the day is Sunday (#15399 by @qingdeng1yue)
+  - Fix October disappear bug (#15394 by @qingdeng1yue)
 - Tabs
   - Fix basic tab nested in card tab padding error (#15461 by @SimonaliaChen)
 - Tag
@@ -862,7 +862,7 @@ Docs
 - Pagination
   - Input value won't be less than 1 (by @elfman in #13727)
 - Popover
-  - Fix popover issues with hover trigger (by @goldengecko in #13104)
+  - Fix popover issues with hover trigger (by @goldeng1ecko in #13104)
   - Fix popper instance memory leak (by @qpxtWhite in #13988)
 - Radio
   - Refine style (by @ohhoney1)

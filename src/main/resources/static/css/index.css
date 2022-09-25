@@ -1,5 +1,5 @@
 
-/*#main{;*/
+/*#main{ !*居中展示*!*/
 /*    background-color: aquamarine;*/
 /*    position: absolute;*/
 /*    left: 50%;*/
@@ -12,52 +12,54 @@
     color: #333;
     text-align: center;
     line-height: 160px;
+    opacity: 0.8;
 }
 
-.el-header, .el-footer {
-    background-color: #B3C0D1;
+.el-header {
+    background-color: #D3DCE6;
     color: #333;
     text-align: center;
     line-height: 60px;
+    opacity: 0.8;
 }
+
+#out{
+    height: 700px;
+}
+
+#head{
+    background-color: #D3DCE6;
+}
+
 .el-aside {
     background-color: #D3DCE6;
     color: #333;
     text-align: center;
     font-family: 宋体;
+    opacity: 0.9;
     /*line-height: 200px;*/
 }
-.test1{
-    background-color: red;
-    float: left;
-}
-.test{
-    background-color: blue;
-    float: right;
-}
-.el-col {
-    border-radius: 4px;
-}
-.bg-purple-dark {
-    background: #99a9bf;
-}
-.bg-purple {
-    background: #d3dce6;
-}
-.bg-purple-light {
-    background: #e5e9f2;
-}
-/*#outter{*/
-/*    line-height: 40px;*/
-/*}*/
+
 #as1{
-    height: 33%;
+    height: 25%;
 }
 #as2{
-    height: 33%;
+    height: 25%;
 }
 #as3{
-    height: 34%;
+    height: 25%;
+}
+#as4{
+    height: 25%;
+}
+
+
+#picture{
+    position: fixed;  /*将图片固定，不随页面滚动*/
+    opacity: 0.8;  /*修改透明度*/
+    height: 100%;
+    width: 100%;
+    z-index: -1;  /*将图片放在最底层*/
 }
 
 

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生态农业圈</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="shortcut icon" href="#" />
+
+</head>
+<body>
+<div id="app">
+
+    <img id="picture" src="plugins/a.jpg" alt="">
+
+    <el-container>
+        <el-header id="head">自动化培育果实</el-header>
+
+        <el-container id="out">
+            <div width="400px" id="outter">
+
+                <el-aside id="as1">
+                    <div>风扇1</div>
+                    <el-radio-group v-model="feng1" @change="changefeng1()">
+                        <el-radio :label="'0'">关闭</el-radio>
+                        <el-radio :label="'1'">一档</el-radio>
+                        <el-radio :label="'2'">二档</el-radio>
+                    </el-radio-group>
+
+                </el-aside>
+
+                <el-aside id="as2">
+                    <div>风扇2</div>
+                    <el-radio-group v-model="feng2" @change="changefeng2()">
+                        <el-radio :label="'0'">关闭</el-radio>
+                        <el-radio :label="'1'">一档</el-radio>
+                        <el-radio :label="'2'">二档</el-radio>
+                    </el-radio-group>
+                </el-aside>
+
+                <el-aside id="as3">
+                    <div>灯</div>
+                    <el-switch
+                            @change="changedeng1()"
+                            v-model="deng1"
+                            active-text="开"
+                            inactive-text="关">
+                    </el-switch>
+                </el-aside>
+
+                <el-aside id="as4">
+                    <div>灯2</div>
+                    <el-switch
+                            @change="changedeng2()"
+                            v-model="deng2"
+                            active-text="开"
+                            inactive-text="关">
+                    </el-switch>
+                </el-aside>
+
+            </div>
+
+            <el-main>
+                <div>
+                    <el-table size="small" current-row-key="id" :data="dataList" stripe highlight-current-row>
+
+                        <el-table-column prop="id" label="属性" align="center"></el-table-column>
+
+                        <el-table-column prop="starttime" label="开始时间" align="center"></el-table-column>
+
+                        <el-table-column prop="light" label="光照强度" align="center"></el-table-column>
+
+                        <el-table-column prop="temperature" label="温度" align="center"></el-table-column>
+
+                        <el-table-column prop="humidity" label="湿度" align="center"></el-table-column>
+
+                        <el-table-column prop="ph" label="PH" align="center"></el-table-column>
+
+                    </el-table>
+
+                    <div></div>
+                    <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+                    <div id="main" style="width: 1200px;height:400px; "></div>
+                </div>
+            </el-main>
+
+        </el-container>
+    </el-container>
+
+</div>
+
+
+<script src="js/vue.js"></script>
+<script src="js/axios-0.18.0.js"></script>
+<script src="element-ui/lib/index.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<link rel="stylesheet"href="element-ui/lib/theme-chalk/index.css">
+
+
+<script>
+
+    new Vue({
+        el: "#app",
+        data(){
+            return{
+                dataList: [],
+                feng1: true,
+                feng2: true,
+                deng1: true,
+                deng2: true,
+                datax:[],
+                datay:[],
+                dataAll:[],
+            }
+        },
+        created() {
+            this.basexx();//由硬件发过来，判断最初的器材的状态
+            this.getAll();
+            //this.getAllTem();
+            this.getAllnydata();
+
+        },
+
+        methods: {
+            basexx() {
+                var paramStr = "?test=" + "hh"
+                    + "#feng1=" + this.feng1
+                    + "#feng2=" + this.feng2
+                    + "#deng1=" + this.deng1
+                    + "#deng2=" + this.deng2;
+                axios({
+                        url: '/ny/basexx/' + paramStr,
+                        method: 'get',
+                    }
+                ).then((res) => {
+                    console.log("最初的数据为：",res.data);
+                })
+
+
+            },
+
+            getAllTem() {
+                axios({
+                        url: '/ny/All',
+                        method: 'get',
+                    }
+                ).then((res) => {
+                    this.datay=res.data.data;
+
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('main'));
+                    var datay = new Array();  //定义此数组datay,用于存储this.datay中的每个数据
+                    this.datay.forEach((i=>{
+                        datay.push(i);
+                    }))
+
+
+                    /* var str = JSON.stringify(this.datay); //JSON转化
+                     console.log("json转换之后：",str);*/
+
+
+                    // 指定图表的配置项和数据
+                    option = {
+                        title: {
+                            text: '温度历史'
+                        },
+                        tooltip: {//当鼠标在上面时，显示该列的数据
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data: ['Tem']
+                        },
+
+                        xAxis: {
+                            type: 'category',
+                            boundaryGap:false,//x轴显示为点
+                            data: ['A','B','C'],
+                        },
+                        yAxis: {
+                            type: 'value',
+                            axisLabel: {
+                                formatter: '{value} °C/PH'
+                            }
+                        },
+                        series: [
+                            {
+                                data: datay,
+                                type: 'line',
+                                name:'Tem',
+                                satck:'Total'
+                            },
+                        ]
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                })
+            },
+
+            getAll() {
+                axios({//农场数据
+                        url: '/ny',
+                        method: 'get',
+                    }
+                ).then((res) => {
+                    console.log("我的nydata的数据为:   ",res.data);
+                    this.dataList = res.data.data;
+                })
+
+                axios({//器具数据
+                        url: '/supplies',
+                        method: 'get',
+                    }
+                ).then((res) => {
+                    console.log("我的supplies的数据为：",res.data);
+                    if(res.data.data.deng1=="1") this.deng1=true;
+                    else this.deng1=false;
+
+                    this.feng1=res.data.data.feng1;
+                    this.feng2=res.data.data.feng2;
+
+                })
+
+            },
+
+            getAllnydata(){
+                axios({
+                        url: '/ny/getAll',
+                        method: 'get',
+                    }
+                ).then((res) => {
+                    this.dataAll=res.data.data;
+                    console.log("数据为：",this.dataAll);
+
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('main'));
+
+                    var dataTem = new Array();  //定义此数组datay,用于存储this.datay中的每个数据
+                    var dataPH=new Array();
+                    var dataTime=new Array();
+                    var dataHum=new Array();
+
+                    this.dataAll.forEach((i=>{
+                        dataTem.push(i.temperature);
+                        dataPH.push(i.ph);
+                        dataTime.push(i.starttime);
+                        dataHum.push(i.humidity);
+                    }))
+
+                    // 指定图表的配置项和数据
+                    option = {
+                        title: {
+                            text: '历史记录'
+                        },
+                        tooltip: {//当鼠标在上面时，显示该列的数据
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data: ['Tem','PH','Hum']
+
+
+
+
+                        },
+
+                        xAxis: {
+                            type: 'category',
+                            boundaryGap:false,//x轴显示为点
+                            data: dataTime,
+                        },
+                        yAxis: {
+                            type: 'value',
+                            axisLabel: {
+                                //formatter: '{value} °C/PH' //单位
+                            }
+                        },
+                        series: [
+                            {
+                                data: dataTem,
+                                type: 'line',
+                                name:'Tem',
+                                satck:'Total'
+                            },
+                            {
+                                data: dataPH,
+                                type: 'line',
+                                name:'PH',
+                                satck:'Total'
+                            },
+                            {
+                                data: dataHum,
+                                type: 'line',
+                                name:'Hum',
+                                satck:'Total'
+                            },
+                        ]
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+
+                })
+
+            },
+
+            changefeng1() {
+                var paramStr = "?test=" + "hh"
+                    + "#feng1=" + this.feng1;//在这里时this.feng1已经改变了,因为点击了才会进入到这个方法啊,
+                console.log("这是feng1的：" + this.feng1);
+                axios({
+                        url: '/ny/feng1/' + paramStr,
+                        method: 'get',
+                    }
+                ).then((res) => {
+
+                })
+            },
+
+            changedeng1() {
+                var paramStr = "?test" + "hh"
+                    + "#deng1=" + this.deng1;
+                axios({
+                        url: '/ny/deng1/' + paramStr,
+                        method: 'get',
+                    }
+                ).then((res) => {
+
+                })
+            },
+
+            changedeng2() {
+                var paramStr = "?test" + "hh"
+                    + "#deng2=" + this.deng2;
+                axios({
+                        url: '/ny/deng2/' + paramStr,
+                        method: 'get',
+                    }
+                ).then((res) => {
+
+                })
+            },
+
+            changefeng2() {
+                var paramStr = "?test" + "hh"
+                    + "#feng2=" + this.feng2;
+                axios({
+                        url: '/ny/feng2/' + paramStr,
+                        method: 'get',
+                    }
+                ).then((res) => {
+
+                })
+            },
+
+
+
+        },
+
+
+    })
+
+</script>
+
+</body>
+</html>

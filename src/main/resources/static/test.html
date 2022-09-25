@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+<html>
 <meta charset="utf-8" />
 <title>WebSocket Test</title>
 <script language="javascript"type="text/javascript">
-    var wsUri ="ws://localhost:8080/websocket/hhh";
+
+    var wsUri ="ws://localhost:8003/websocket/hhh";
     var  websocket = new WebSocket(wsUri);
     //用来存放创建的多个连接对象
     var websocketarray=new Array();
@@ -31,15 +33,15 @@
         writeToScreen("关闭连接");
     }
 
-    function onMessage(evt) {
+    function onMessage(evt) {//第二步
         writeToScreen('收到消息'+ evt.data);
     }
 
-    function onError(evt) {
+    function onError(evt) {//第二步
         writeToScreen('出现错误 '+ evt.data);
     }
 
-    function writeToScreen(message) {
+    function writeToScreen(message) {//第三步,接收第二步的信息
         console.info(message)
     }
 
@@ -58,7 +60,7 @@
     }
     function postmessage(){
         var c=document.getElementById("message");
-        websocket.send(c.value)
+        websocket.send(c.value)//第一步
     }
     window.addEventListener("load", testWebSocket, false);
 </script>

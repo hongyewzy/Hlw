@@ -20,12 +20,13 @@ public class suppliesController {
     private suppliesService service;
 
     @GetMapping
-    private R<supplies> getAll(){
+    private R<supplies> getNow(){
         log.info("这里是suppliesController");
         supplies now=service.selectNow();
         log.info("数据为为:{}",now);
         return R.success(now);
     }
+
 
 
 }

@@ -282,7 +282,7 @@
 - InfiniteScroll
   - Actualización del nombre del paquete (#16125 by @iamkun)
 - MessageBox
-  - Arreglado el bug de distinguishCancelAndClose, la acción no era la misma que la documentada (#15438 by @qingdengyue)
+  - Arreglado el bug de distinguishCancelAndClose, la acción no era la misma que la documentada (#15438 by @qingdeng1yue)
 - PopupManager
   - Arreglado que el z-index no podía ser reescrito la primera vez que se usaba (#15738 by @luckyCao)
 - Tarea
@@ -383,8 +383,8 @@
   - Corregido estilo show-word-count en el-form (#15359 by @lvjiaxuan)
   - Corregido el icono de borrar que no estaba centrado (#15354 by @YiiGuxing)
 - Calendar
-  - Corregido día de la semana no correcto cuando el día es domingo (#15399 by @qingdengyue)
-  - Corregido error de desaparición de octubre (#15394 by @qingdengyue)
+  - Corregido día de la semana no correcto cuando el día es domingo (#15399 by @qingdeng1yue)
+  - Corregido error de desaparición de octubre (#15394 by @qingdeng1yue)
 - Tabs
   - Corrección de la pestaña básica anidada en el error de relleno de la pestaña de la tarjeta (#15461 by @SimonaliaChen)
 - Tag
@@ -862,7 +862,7 @@
 - Pagination
   - El valor de entrada no será menor que 1 (#13727) (por @elfman)
 - Popover
-  - Corrección de problemas de popover con el disparador de hover (#13104) (por @goldengecko)
+  - Corrección de problemas de popover con el disparador de hover (#13104) (por @goldeng1ecko)
   - Corregido el fallo de memoria de instancia de popper (#13988) (por @qpxtWhite)
 - Radio
   - Refinado el estilo (por @ohhoney1)

@@ -1,10 +1,13 @@
 new Vue({
     el: "#app",
-    data: {
-        dataList: [],
-        feng1: true,
-        feng2: true,
-        deng: true,
+    data(){
+        return{
+            dataList: [],
+            feng1: true,
+            feng2: true,
+            deng1: true,
+            deng12: true,
+        }
     },
     created() {
         this.basexx();//由硬件发过来，判断最初的器材的状态
@@ -16,7 +19,7 @@ new Vue({
             var paramStr = "?test=" + "hh"
                 + "#feng1=" + this.feng1
                 + "#feng2=" + this.feng2
-                + "#deng=" + this.deng;
+                + "#deng1=" + this.deng1;
             axios({
                     url: '/ny/basexx/' + paramStr,
                     method: 'get',
@@ -48,8 +51,8 @@ new Vue({
                 // else this.feng1=false;
                 // if(res.data.data.feng2=="1") this.feng2=true;
                 // else this.feng2=false;
-                if(res.data.data.deng=="1") this.deng=true;
-                else this.deng=false;
+                if(res.data.data.deng1=="1") this.deng1=true;
+                else this.deng1=false;
 
                 this.feng1=res.data.data.feng1;
                 this.feng2=res.data.data.feng2;
@@ -71,11 +74,11 @@ new Vue({
             })
         },
 
-        changedeng() {
+        changedeng1() {
             var paramStr = "?test" + "hh"
-                + "&deng=" + this.deng;
+                + "&deng1=" + this.deng1;
             axios({
-                    url: '/ny/deng/' + paramStr,
+                    url: '/ny/deng1/' + paramStr,
                     method: 'get',
                 }
             ).then((res) => {
@@ -122,5 +125,5 @@ new Vue({
 //     console.log("器具的数据是:{}",res);
 //     this.feng1=res.data.data.feng1;
 //     this.feng2=res.data.data.feng2;
-//     this.deng=res.data.data.deng;
+//     this.deng1=res.data.data.deng1;
 // })

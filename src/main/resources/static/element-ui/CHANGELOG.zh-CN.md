@@ -279,7 +279,7 @@
 - InfiniteScroll
   - 更新包名 (#16125 by @iamkun)
 - MessageBox
-  - 修复 `distinguishCancelAndClose` 行为与文档不符的问题 (#15438 by @qingdengyue)
+  - 修复 `distinguishCancelAndClose` 行为与文档不符的问题 (#15438 by @qingdeng1yue)
 - PopupManager
   - 修复无法复写 `z-index` 的问题 (#15738 by @luckyCao)
 - Docs
@@ -383,8 +383,8 @@
   - 修复 show-word-count 样式问题 (#15359 by @lvjiaxuan)
   - 修复删除图标样式 (#15354 by @YiiGuxing)
 - Calendar
-  - 修复星期展示错误 (#15399 by @qingdengyue)
-  - 修复十月展示问题 (#15394 by @qingdengyue)
+  - 修复星期展示错误 (#15399 by @qingdeng1yue)
+  - 修复十月展示问题 (#15394 by @qingdeng1yue)
 - Tabs
   - 修复 padding 问题 (#15461 by @SimonaliaChen)
 - Tag
@@ -862,7 +862,7 @@ Docs
 - Pagination
   - 输入框的值不会小于 1 (by @elfman in #13727)
 - Popover
-  - 修正 hover 的触发行为 (by @goldengecko in #13104)
+  - 修正 hover 的触发行为 (by @goldeng1ecko in #13104)
   - 修正弹出框的内存泄漏 (by @qpxtWhite in #13988)
 - Radio
   - 改进显示样式 (by @ohhoney1)

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -32,4 +33,5 @@ public class suppliesServiceImpl extends ServiceImpl<suppliesMapper, supplies> i
         supplies now = suppliesDao.selectNow();
         return now;
     }
+
 }
